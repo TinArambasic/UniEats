@@ -34,5 +34,6 @@ US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te mo
   - TASK-02 - Kreirati bazu podataka sa jelima
   - TASK-03 - Implementiranje dohvacanja podataka sa studentske iskaznice preko ISSP Srce API-ja
   - TASK-04 - Napisati test narudžbe
+  - TASK-05 - Deploy pomoću Dockera
 ## Raspodjela zadataka
 // TODO

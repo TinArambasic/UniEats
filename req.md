@@ -24,7 +24,7 @@ US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te mo
   - FZ-09 - Sustav mora ispisati račun za svaku narudžbu
   - FZ-10 - Mogućnost praćenja statusa narudžbe
 ## Nefunkcijski zahtjevi
-// TODO 5 nefunkcijskih zahtjeva
+  - NZ-01 - Sustav mora biti kontejniziran i raditi preko dockera
 ## Taskovi
 // TODO
 ## Raspodjela zadataka

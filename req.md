@@ -30,6 +30,6 @@ US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te mo
   - NZ-04 - Pristup sustavu mogu imati samo autentificirani korisnici (osobe sa studentskim iskaznicama(studenti) i vlasnici restorana (admin))
   - NZ-05 - Sustav mora biti dostupan tijekom radnog vremena
 ## Taskovi
-// TODO
+  - TASK-01 - Implementirati sidebar koji prikazuje vrste jela
 ## Raspodjela zadataka
 // TODO

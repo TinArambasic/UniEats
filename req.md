@@ -13,16 +13,16 @@ US-01 Kao student, želim vidjeti sve trenutno dostupne artikle u menzi i naruč
 
 US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te moći raditi CRUD operacije nad svim artiklima(Create, read, update, delete).
 ## Funkcijski zahtjevi
-  - FZ-01 - Sustav mora imati jasno rasclanjene kategorije jela
-  - FZ-02 - Sustav mora oznaciti koji su artikli dostupni, a kojih je ponestalo 
-  - FZ-03 - Sutav mora prikazati informacije sa studentske iskaznice poput preostale subvencije ili imena studenta
-  - FZ-04 - Mogućnost izmjene sastojaka u jelu (npr. maknuti rajčicu ili dodati extra sir)
-  - FZ-05 - Sustav mora omogućiti korisniku mogućnost pregleda i uređivanja košarice sve dok narudžba nije primljena
-  - FZ-06 - Sustav mora imati prikaz nutritivnih vrijednosti
-  - FZ-07 - Sustav mora imati prikaz cijene za svaki proizvod sa subvencijom i bez subvencije
-  - FZ-08 - Sustav mora imati prikaz reda čekanja uz mogućnost procijenjenog vremena čekanja
-  - FZ-09 - Sustav mora ispisati račun za svaku narudžbu
-  - FZ-10 - Mogućnost praćenja statusa narudžbe
+  - FZ-01 - Korisnik mora imati uvid svih dostupnih jela
+  - FZ-02 - Administrator ima uvid svih dostupnih i nedostupnih artikala
+  - FZ-03 - Korisnik ima uvid svojih osobnih podataka poput preostale subvencije ili imena studenta
+  - FZ-04 - Korisnik može urediti svoju narudžbu
+  - FZ-05 - Administrator može trajno ukloniti artikal iz menija
+  - FZ-06 - Korisnik ima prikaz nutritivnih vrijednosti pojedinog artikla
+  - FZ-07 - Korisnik može vidjeti cijenu proizvoda
+  - FZ-08 - Korisnik može isprazniti košaricu
+  - FZ-09 - Administrator može promijeniti cijenu artikla
+  - FZ-10 - Korisnik se može prijaviti i odjaviti
 ## Nefunkcijski zahtjevi
   - NZ-01 - Sustav mora biti kontejniziran i raditi preko dockera
   - NZ-02 - 2 sekunde nakon plaćanja sustav mora zaprimiti narudžbu
@@ -31,10 +31,15 @@ US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te mo
   - NZ-05 - Sustav mora biti dostupan tijekom radnog vremena
 ## Taskovi
   - TASK-01 - Implementirati sidebar koji prikazuje vrste jela
-  - TASK-02 - Kreirati bazu podataka sa jelima
+  - TASK-02 - Kreirati bazu podataka za sve potrebne entitete (User, Admin, Artikal)
   - TASK-03 - Implementiranje dohvacanja podataka sa studentske iskaznice preko ISSP Srce API-ja
   - TASK-04 - Napisati test narudžbe
   - TASK-05 - Deploy pomoću Dockera
+  - TASK-06 - Implementirati restAPI
+  - TASK-07 - Napraviti frontend aplikacije
+  - TASK-08 - Implementacija backenda
+  - TASK-09 - Definirati endpointove
+  - TASK-10 - Omogućiti enviroment varijable
 ## Raspodjela zadataka
   - Fran: 
   - Lovro: 

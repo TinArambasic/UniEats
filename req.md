@@ -13,7 +13,8 @@ US-01 Kao student, želim vidjeti sve trenutno dostupne artikle u menzi i naruč
 
 US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te moći raditi CRUD operacije nad svim artiklima(Create, read, update, delete).
 ## Funkcijski zahtjevi
-Sustav mora imati side-bar sa vrstama jela
+FZ01 - Sustav mora imati jasno rasclanjene kategorije jela
+FZ02 - Sustav mora oznaciti koji su artikli dostupni, a kojih je ponestalo
 ## Nefunkcijski zahtjevi
 // TODO 5 nefunkcijskih zahtjeva
 ## Taskovi

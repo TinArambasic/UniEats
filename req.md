@@ -17,10 +17,12 @@ US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te mo
   - FZ-02 - Sustav mora oznaciti koji su artikli dostupni, a kojih je ponestalo 
   - FZ-03 - Sutav mora prikazati informacije sa studentske iskaznice poput preostale subvencije ili imena studenta
   - FZ-04 - Mogućnost izmjene sastojaka u jelu (npr. maknuti rajčicu ili dodati extra sir)
-  - FZ-05 - Sustav mora omogućiti korisniku mogućnost pregleda košarice u bilo kojem trenu
+  - FZ-05 - Sustav mora omogućiti korisniku mogućnost pregleda i uređivanja košarice sve dok narudžba nije primljena
   - FZ-06 - Sustav mora imati prikaz nutritivnih vrijednosti
-  - FZ-07 - Sustav mora imati prikaz cijene za svaki proizvod sa subvencijom i bez subvencije                                                                                                                                     - FZ-08 - Sustav mora imati prikaz reda čekanja uz mogućnost procijenjenog vremena čekanja
+  - FZ-07 - Sustav mora imati prikaz cijene za svaki proizvod sa subvencijom i bez subvencije
+  - FZ-08 - Sustav mora imati prikaz reda čekanja uz mogućnost procijenjenog vremena čekanja
   - FZ-09 - Sustav mora imati mogućnost otkazivanja narudžbe prije nego što je narudžba plaćena
+  - FZ-10 - Mogućnost praćenja statusa narudžbe
 ## Nefunkcijski zahtjevi
 // TODO 5 nefunkcijskih zahtjeva
 ## Taskovi

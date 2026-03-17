@@ -5,11 +5,9 @@
   - Lovro Roguljić
   - Stjepan Galić
   - Tin Arambašić
-
 ## GitHub repozitorij
 - Link: https://github.com/TinArambasic/UniEats
 - Svi članovi dodani: DA
-- 
 ## User storyji
 US-01 Kao student, želim vidjeti sve trenutno dostupne artikle u menzi i naručiti jelo
 US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te moći raditi CRUD operacije nad svim artiklima(Create, read, update, delete).

@@ -20,6 +20,7 @@ US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te mo
   - FZ-05 - Sustav mora omogućiti korisniku mogućnost pregleda košarice u bilo kojem trenu
   - FZ-06 - Sustav mora imati prikaz nutritivnih vrijednosti
   - FZ-07 - Sustav mora imati prikaz cijene za svaki proizvod sa subvencijom i bez subvencije                                                                                                                                     - FZ-08 - Sustav mora imati prikaz reda čekanja uz mogućnost procijenjenog vremena čekanja
+  - FZ-09 - Sustav mora imati mogućnost otkazivanja narudžbe prije nego što je narudžba plaćena
 ## Nefunkcijski zahtjevi
 // TODO 5 nefunkcijskih zahtjeva
 ## Taskovi

@@ -36,4 +36,8 @@ US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te mo
   - TASK-04 - Napisati test narudžbe
   - TASK-05 - Deploy pomoću Dockera
 ## Raspodjela zadataka
-// TODO
+  - Fran: 
+  - Lovro: 
+  - Robert: 
+  - Stjepan: 
+  - Tin: 

@@ -26,6 +26,7 @@ US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te mo
 ## Nefunkcijski zahtjevi
   - NZ-01 - Sustav mora biti kontejniziran i raditi preko dockera
   - NZ-02 - 2 sekunde nakon plaćanja sustav mora zaprimiti narudžbu
+  - NZ-03 - Sustav u slucaju pogreske u placanju vraca gresku 
 ## Taskovi
 // TODO
 ## Raspodjela zadataka

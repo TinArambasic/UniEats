@@ -28,6 +28,7 @@ US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te mo
   - NZ-02 - 2 sekunde nakon plaćanja sustav mora zaprimiti narudžbu
   - NZ-03 - Sustav u slucaju pogreske u placanju vraca gresku
   - NZ-04 - Pristup sustavu mogu imati samo autentificirani korisnici (osobe sa studentskim iskaznicama(studenti) i vlasnici restorana (admin))
+  - NZ-05 - Sustav mora biti dostupan tijekom radnog vremena
 ## Taskovi
 // TODO
 ## Raspodjela zadataka

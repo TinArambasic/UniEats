@@ -18,6 +18,7 @@ US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te mo
   - FZ-03 - Sutav mora prikazati informacije sa studentske iskaznice poput preostale subvencije ili imena studenta
   - FZ-04 - Mogućnost izmjene sastojaka u jelu (npr. maknuti rajčicu ili dodati extra sir)
   - FZ-05 - Sustav mora omogućiti korisniku mogućnost pregleda košarice u bilo kojem trenu
+  - FZ-06 - Sustav mora imati prikaz nutritivnih vrijednosti
 ## Nefunkcijski zahtjevi
 // TODO 5 nefunkcijskih zahtjeva
 ## Taskovi

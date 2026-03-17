@@ -31,5 +31,6 @@ US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te mo
   - NZ-05 - Sustav mora biti dostupan tijekom radnog vremena
 ## Taskovi
   - TASK-01 - Implementirati sidebar koji prikazuje vrste jela
+  - Task-02 - Kreirati bazu podataka
 ## Raspodjela zadataka
 // TODO

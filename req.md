@@ -13,7 +13,7 @@ US-01 Kao student, želim vidjeti sve trenutno dostupne artikle u menzi i naruč
 
 US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te moći raditi CRUD operacije nad svim artiklima(Create, read, update, delete).
 ## Funkcijski zahtjevi
-//TODO 10 funkcijskih zahtjeva
+Sustav mora imati side-bar sa vrstama jela
 ## Nefunkcijski zahtjevi
 // TODO 5 nefunkcijskih zahtjeva
 ## Taskovi

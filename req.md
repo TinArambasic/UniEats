@@ -33,5 +33,6 @@ US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te mo
   - TASK-01 - Implementirati sidebar koji prikazuje vrste jela
   - TASK-02 - Kreirati bazu podataka sa jelima
   - TASK-03 - Implementiranje dohvacanja podataka sa studentske iskaznice preko ISSP Srce API-ja
+  - TASK-04 - Napisati test narudžbe
 ## Raspodjela zadataka
 // TODO

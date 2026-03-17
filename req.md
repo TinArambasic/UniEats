@@ -1,0 +1,23 @@
+# Projekt: Narudžbe za menzu/kuhinju (pre-order)
+## Članovi tima:
+  - Fran Topalić
+  - Robert Radman
+  - Lovro Roguljić
+  - Stjepan Galić
+  - Tin Arambašić
+
+## GitHub repozitorij
+- Link: https://github.com/TinArambasic/UniEats
+- Svi članovi dodani: DA
+- 
+## User storyji
+US-01 Kao student, želim vidjeti sve trenutno dostupne artikle u menzi i naručiti jelo
+US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te moći raditi CRUD operacije nad svim artiklima(Create, read, update, delete).
+## Funkcijski zahtjevi
+//TODO 10 funkcijskih zahtjeva
+## Nefunkcijski zahtjevi
+// TODO 5 nefunkcijskih zahtjeva
+## Taskovi
+// TODO
+## Raspodjela zadataka
+// TODO

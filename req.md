@@ -25,6 +25,7 @@ US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te mo
   - FZ-10 - Mogućnost praćenja statusa narudžbe
 ## Nefunkcijski zahtjevi
   - NZ-01 - Sustav mora biti kontejniziran i raditi preko dockera
+  - NZ-02 - 2 sekunde nakon plaćanja sustav mora zaprimiti narudžbu
 ## Taskovi
 // TODO
 ## Raspodjela zadataka

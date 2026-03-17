@@ -15,6 +15,7 @@ US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te mo
 ## Funkcijski zahtjevi
 FZ01 - Sustav mora imati jasno rasclanjene kategorije jela
 FZ02 - Sustav mora oznaciti koji su artikli dostupni, a kojih je ponestalo
+FZ03 - Sutav mora prikazati informacije sa studentske iskaznice poput preostale subvencije ili imena studenta
 ## Nefunkcijski zahtjevi
 // TODO 5 nefunkcijskih zahtjeva
 ## Taskovi

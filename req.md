@@ -41,8 +41,8 @@ US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te mo
   - TASK-09 - Definirati endpointove
   - TASK-10 - Omogućiti enviroment varijable
 ## Raspodjela zadataka
-  - Fran: 
-  - Lovro: 
-  - Robert: 
-  - Stjepan: 
-  - Tin: 
+  - Fran: FZ-01, FZ-06, NZ-05, TASK-06, TASK-10
+  - Lovro: FZ-02, FZ-09, NZ-03, TASK-03, TASK-05
+  - Robert: FZ-03, FZ-08, NZ-04, TASK-04, TASK-07
+  - Stjepan: FZ-04, FZ-07, NZ-02, TASK-01, TASK-09
+  - Tin: FZ-10, FZ-05, NZ-01, TASK-02, TASK-08

@@ -92,7 +92,11 @@ end
 
 ## USE CASE
 ### OPIS
+Akteri: Sustav koriste Student i Administrator (vlasnik restorana).
 
+- Student: Pregledava dostupna jela, cijene i nutrijente, upravlja narudžbom (kreiranje, uređivanje, pražnjenje košarice) te ima uvid u osobne podatke poput stanja subvencije.
+- Administrator: Ima uvid u sve artikle (dostupne i nedostupne) te provodi CRUD operacije, što uključuje promjenu cijena i trajno uklanjanje jela iz ponude.
+- Veze: Pristup je dozvoljen isključivo autentificiranim korisnicima, pa glavne akcije obavezno zahtijevaju prijavu (<<include>>). Specifične radnje poput pregleda nutrijenata ili uređivanja košarice modelirane su kao opcionalna proširenja glavnih procesa (<<extend>>).
 ```
 @startuml
 left to right direction

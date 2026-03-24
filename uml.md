@@ -1,4 +1,5 @@
 ## CLASS DIAGRAM
+```
 @startuml
 
 class Korisnik {
@@ -42,7 +43,7 @@ Narudzba "1" *-- "1..*" StavkaNarudzbe : sadrži >
 StavkaNarudzbe "0..*" -- "1" Jelo : odnosi se na >
 
 @enduml
-
+```
 
 
 
@@ -56,7 +57,7 @@ Scenarij prikazuje tok narudžbe jela od strane studenta. Student otvara meni, f
 - ako je košarica **prazna** — frontend prikazuje upozorenje studentu.
  
 Sukladno nefunkcijskom zahtjevu NZ-02, sustav mora zaprimiti narudžbu unutar 2 sekunde od plaćanja.
- 
+ ```
 @startuml
  
 - uloga Student
@@ -84,7 +85,7 @@ else košarica prazna
 end
  
 @enduml
-
+```
 
 ## USE CASE
 ```

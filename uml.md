@@ -83,3 +83,57 @@ else košarica prazna
 end
  
 @enduml
+
+
+usecase
+@startuml
+left to right direction
+
+actor "Student (Korisnik)" as student
+actor "Administrator" as admin
+
+rectangle "UniEats Sustav"{
+    usecase "Prijava i odjava" as UC_Prijava
+    
+    usecase "Pregled dostupnih jela" as UC_PregledJela
+    usecase "Pregled nutritivnih vrijednosti" as UC_Nutrijenti
+    usecase "Pregled cijene" as UC_Cijena
+    
+    usecase "Naručivanje jela" as UC_Narudzba
+    usecase "Uređivanje narudžbe" as UC_Uredi
+    usecase "Pražnjenje košarice" as UC_Prazni
+    
+    usecase "Uvid u osobne podatke" as UC_Podaci
+
+    usecase "Upravljanje artiklima (CRUD)" as UC_CRUD
+    usecase "Promjena cijene artikla" as UC_PromjenaCijene
+    usecase "Trajno uklanjanje artikla" as UC_Uklanjanje
+    usecase "Pregled svih artikala" as UC_SviArtikli
+}
+
+' student relacije
+student --> UC_Prijava
+student --> UC_PregledJela
+student --> UC_Narudzba
+student --> UC_Podaci
+
+' admin relacije
+admin --> UC_Prijava
+admin --> UC_CRUD
+admin --> UC_SviArtikli
+
+' include i extend relacije 
+UC_Narudzba ..> UC_Prijava : <<include>>
+UC_CRUD ..> UC_Prijava : <<include>>
+
+UC_PregledJela <.. UC_Nutrijenti : <<extend>>
+UC_PregledJela <.. UC_Cijena : <<extend>>
+
+UC_Narudzba <.. UC_Uredi : <<extend>>
+UC_Narudzba <.. UC_Prazni : <<extend>>
+
+UC_CRUD <.. UC_PromjenaCijene : <<extend>>
+UC_CRUD <.. UC_Uklanjanje : <<extend>>
+
+@enduml
+

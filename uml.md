@@ -58,28 +58,28 @@ Sukladno nefunkcijskom zahtjevu NZ-02, sustav mora zaprimiti narudžbu unutar 2 
  
 @startuml
  
-actor Student
-participant "Frontend" as FE
-participant "REST API" as API
-participant "Baza podataka" as DB
+- uloga Student
+- sudionik "Frontend" kao FE
+- sudionik "REST API" kao API
+- sudionik "Baza podataka" kao DB
  
 Student -> FE : otvori meni
-FE -> API : GET /api/artikli
-API -> DB : SELECT dostupni artikli
-DB --> API : [lista artikala]
-API --> FE : 200 OK + jela
-FE --> Student : prikaži meni
+- FE -> API : GET /api/artikli
+- API -> DB : SELECT dostupni artikli
+- DB --> API : [lista artikala]
+- API --> FE : 200 OK + jela
+- FE --> Student : prikaži meni
  
 alt košarica nije prazna
-  Student -> FE : dodaj u košaricu
-  Student -> FE : potvrdi narudžbu
-  FE -> API : POST /api/narudzba
-  API -> DB : INSERT narudžba
-  DB --> API : [OK]
-  API --> FE : 201 Created
-  FE --> Student : narudžba zaprimljena
+  - Student -> FE : dodaj u košaricu
+  - Student -> FE : potvrdi narudžbu
+  - FE -> API : POST /api/narudzba
+  - API -> DB : INSERT narudžba
+  - DB --> API : [OK]
+  - API --> FE : 201 Created
+  - FE --> Student : narudžba zaprimljena
 else košarica prazna
-  FE --> Student : upozori: košarica je prazna
+  - FE --> Student : upozori: košarica je prazna
 end
  
 @enduml

@@ -1,6 +1,6 @@
 ## CLASS DIAGRAM
 ### OPIS
-Akteri: Korisnik, Menza, Jelo, Narudžba, StavkaNarudžbe
+Entiteti: Korisnik, Menza, Jelo, Narudžba, StavkaNarudžbe
 Relacije i opis: 1 korisnik može napraviti više narudžbi, Više jela se nudi u jednoj menzi, Više narudžbi se može preuzeti u jednoj menzi, Svaka narudžba sadrži barem jednu stavku, Svaka stavka narudžbe se odnosi na jedno jelo
 ```
 @startuml

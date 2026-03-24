@@ -1,3 +1,4 @@
+## CLASS DIAGRAM
 @startuml
 
 class Korisnik {
@@ -47,7 +48,7 @@ StavkaNarudzbe "0..*" -- "1" Jelo : odnosi se na >
 
 
 
-
+## SEQUENCE
 ### Opis
  
 Scenarij prikazuje tok narudžbe jela od strane studenta. Student otvara meni, frontend dohvaća dostupna jela s REST API-ja, a API ih čita iz baze podataka. Blok alt pokriva dva slučaja:
@@ -85,7 +86,7 @@ end
 @enduml
 
 
-usecase
+## USE CASE
 @startuml
 left to right direction
 

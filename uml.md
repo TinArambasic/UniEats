@@ -87,6 +87,7 @@ end
 
 
 ## USE CASE
+```
 @startuml
 left to right direction
 
@@ -137,4 +138,4 @@ UC_CRUD <.. UC_PromjenaCijene : <<extend>>
 UC_CRUD <.. UC_Uklanjanje : <<extend>>
 
 @enduml
-
+```

@@ -15,7 +15,7 @@ US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te mo
 ## Funkcijski zahtjevi
   - FZ-01 - Korisnik mora imati uvid svih dostupnih jela
   - FZ-02 - Administrator ima uvid svih dostupnih i nedostupnih artikala
-  - FZ-03 - Korisnik ima uvid svojih osobnih podataka poput preostale subvencije ili imena studenta
+  - FZ-03 - Korisnik ima uvid u potrošnju na tjednoj i mjesečnoj bazi
   - FZ-04 - Korisnik može urediti svoju narudžbu
   - FZ-05 - Administrator može trajno ukloniti artikal iz menija
   - FZ-06 - Korisnik ima prikaz nutritivnih vrijednosti pojedinog artikla
@@ -32,7 +32,7 @@ US-02 Kao administrator, želim vidjeti sve artikle(Dostupne i nedostupne) te mo
 ## Taskovi
   - TASK-01 - Implementirati sidebar koji prikazuje vrste jela
   - TASK-02 - Kreirati bazu podataka za sve potrebne entitete (User, Admin, Artikal)
-  - TASK-03 - Implementiranje dohvacanja podataka sa studentske iskaznice preko ISSP Srce API-ja
+  - TASK-03 - Implementiranje sustava ocjenjivanja jela pojedinačno iz posljedne narudžbe
   - TASK-04 - Napisati test narudžbe
   - TASK-05 - Deploy pomoću Dockera
   - TASK-06 - Implementirati restAPI

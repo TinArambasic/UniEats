@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="420" viewBox="0 0 640 420" role="img" aria-label="Vizual jela">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f7fb" />
+      <stop offset="100%" stop-color="#e8edf5" />
+    </linearGradient>
+    <linearGradient id="plate" x1="180" y1="120" x2="470" y2="320">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#e2e8f0" />
+    </linearGradient>
+    <linearGradient id="foodA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#ea580c" />
+    </linearGradient>
+    <linearGradient id="foodB" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="420" rx="24" fill="url(#bg)" />
+  <ellipse cx="320" cy="215" rx="160" ry="112" fill="url(#plate)" />
+  <ellipse cx="320" cy="215" rx="132" ry="92" fill="#f8fafc" />
+  <path d="M245 206c14-34 47-52 88-46 41 5 75 36 83 72 5 24-11 44-38 52-47 15-114 3-140-25-13-13-9-35 7-53z" fill="url(#foodA)" />
+  <path d="M292 257c30-16 70-12 88 8 11 11 8 29-8 40-26 18-70 19-99 5-23-10-23-39 19-53z" fill="url(#foodB)" />
+  <circle cx="287" cy="192" r="9" fill="#fff" opacity=".72" />
+  <circle cx="366" cy="232" r="7" fill="#fff" opacity=".6" />
+</svg>

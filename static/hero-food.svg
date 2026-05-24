@@ -1,0 +1,46 @@
+<svg width="960" height="720" viewBox="0 0 960 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="40" y1="40" x2="920" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1F2937"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+    <radialGradient id="spotA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(240 180) rotate(38) scale(380 300)">
+      <stop stop-color="#F97316" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#F97316" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="spotB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(740 540) rotate(-28) scale(340 260)">
+      <stop stop-color="#60A5FA" stop-opacity=".42"/>
+      <stop offset="1" stop-color="#60A5FA" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="plate" x1="195" y1="130" x2="774" y2="590" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FEFEFE"/>
+      <stop offset="1" stop-color="#E2E8F0"/>
+    </linearGradient>
+    <linearGradient id="foodA" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#EA580C"/>
+    </linearGradient>
+    <linearGradient id="foodB" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#22C55E"/>
+      <stop offset="1" stop-color="#15803D"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="960" height="720" rx="42" fill="url(#bg)"/>
+  <rect x="0" y="0" width="960" height="720" rx="42" fill="url(#spotA)"/>
+  <rect x="0" y="0" width="960" height="720" rx="42" fill="url(#spotB)"/>
+  <ellipse cx="482" cy="388" rx="262" ry="187" fill="url(#plate)"/>
+  <ellipse cx="482" cy="388" rx="223" ry="157" fill="#F8FAFC"/>
+  <ellipse cx="482" cy="388" rx="213" ry="148" fill="#EEF2F7"/>
+
+  <path d="M348 336C364 301 410 278 456 283C506 288 551 324 569 372C582 407 556 437 516 447C461 461 380 445 344 405C326 384 337 358 348 336Z" fill="url(#foodA)"/>
+  <path d="M530 312C561 325 588 357 596 389C604 423 585 452 554 463C515 478 459 467 430 442C408 422 400 392 412 367C430 330 490 296 530 312Z" fill="#FCD34D" fill-opacity=".82"/>
+  <path d="M324 404C352 382 398 378 433 392C466 406 472 431 447 451C418 475 369 485 333 474C304 466 295 430 324 404Z" fill="url(#foodB)"/>
+  <path d="M504 430C548 409 607 421 633 451C648 468 642 490 622 504C588 528 529 532 489 516C456 503 457 453 504 430Z" fill="#34D399" fill-opacity=".9"/>
+
+  <circle cx="408" cy="352" r="14" fill="#F8FAFC" fill-opacity=".88"/>
+  <circle cx="540" cy="392" r="10" fill="#F8FAFC" fill-opacity=".8"/>
+  <circle cx="462" cy="454" r="9" fill="#F8FAFC" fill-opacity=".75"/>
+
+  <path d="M267 194C335 176 398 140 450 90" stroke="#FDBA74" stroke-width="14" stroke-linecap="round" opacity=".6"/>
+  <path d="M732 231C680 256 635 303 606 354" stroke="#93C5FD" stroke-width="12" stroke-linecap="round" opacity=".5"/>
+</svg>

@@ -1,0 +1,687 @@
+﻿<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniEats - Menza Narudžbe</title>
+  <link rel="stylesheet" href="/static/index.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Uni<span>Eats</span></div>
+  <div class="nav-right">
+    <span class="nav-subsidy theme-transition" id="nav-subsidy" style="display:none"></span>
+    <button class="nav-avatar-btn theme-transition" id="nav-profile-btn" onclick="openProfilePage()" style="display:none" title="Profil">
+      <span class="nav-avatar-fallback" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+          <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/>
+        </svg>
+      </span>
+      <img class="nav-avatar-img" id="nav-avatar-img" alt="Profilna slika" />
+    </button>
+  </div>
+</nav>
+<div class="role-indicator student" id="role-indicator"></div>
+
+<!-- LOGIN / REGISTER -->
+<div id="login-page">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-logo-text">UniEats</div>
+      <div class="login-logo-sub">Menza narudžbe - brzo, jednostavno</div>
+    </div>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="auth-tab-login" onclick="switchAuthTab('login')">Prijava</button>
+      <button class="auth-tab" id="auth-tab-register" onclick="switchAuthTab('register')">Registracija</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="login-form">
+      <div class="form-group">
+        <label>Prijava kao</label>
+        <div class="login-role-picker" id="login-role-picker">
+          <button type="button" class="login-role-choice active" data-mode="student" onclick="setLoginMode('student')">
+            <span class="role-title">Student</span>
+            <span class="role-sub">Prijava karticom</span>
+          </button>
+          <button type="button" class="login-role-choice" data-mode="staff" onclick="setLoginMode('staff')">
+            <span class="role-title">Djelatnik</span>
+            <span class="role-sub">Prijava korisničkim imenom</span>
+          </button>
+          <button type="button" class="login-role-choice" data-mode="owner" onclick="setLoginMode('owner')">
+            <span class="role-title">Admin</span>
+            <span class="role-sub">Administratorski pristup</span>
+          </button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label id="login-identifier-label">Broj studentske iskaznice</label>
+        <input type="text" id="card-input" placeholder="npr. 12345678" />
+        <input type="text" id="staff-username-input" placeholder="korisničko ime" style="display:none" />
+      </div>
+      <div class="form-group">
+        <label>Lozinka</label>
+        <input type="password" id="pass-input" placeholder="⬢⬢⬢⬢⬢⬢" />
+      </div>
+      <div id="login-error" class="error-msg"></div>
+      <button class="btn btn-primary btn-full" style="margin-top:.6rem" onclick="doLogin()">Prijavi se</button>
+    </div>
+
+    <!-- REGISTER -->
+    <div id="register-form" style="display:none">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Ime</label>
+          <input type="text" id="reg-first" placeholder="Ana" />
+        </div>
+        <div class="form-group">
+          <label>Prezime</label>
+          <input type="text" id="reg-last" placeholder="Horvat" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text" id="reg-email" placeholder="ana@student.hr" />
+      </div>
+      <div class="form-group">
+        <label>Broj iskaznice <span style="font-weight:400;text-transform:none">(6-32 znamenke)</span></label>
+        <input type="text" id="reg-card" placeholder="npr. 123456" />
+      </div>
+      <div class="form-group">
+        <label>ESI broj</label>
+        <input type="text" id="reg-esi" placeholder="npr. ESI123456" />
+      </div>
+      <div class="form-group">
+        <label>Lozinka <span style="font-weight:400;text-transform:none">(min. 6 znakova)</span></label>
+        <input type="password" id="reg-pass" placeholder="⬢⬢⬢⬢⬢⬢" />
+      </div>
+      <div class="form-group">
+        <label>Potvrda lozinke</label>
+        <input type="password" id="reg-pass2" placeholder="⬢⬢⬢⬢⬢⬢" />
+      </div>
+      <div id="register-error" class="error-msg"></div>
+      <button class="btn btn-primary btn-full" style="margin-top:.6rem" onclick="doRegister()">Registriraj se</button>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app-page">
+  <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle" onclick="toggleMobileSidebar()" aria-label="Otvori navigaciju">&#9776;</button>
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay" onclick="closeMobileSidebar()"></div>
+  <div class="app-shell" id="main-layout">
+    <aside class="app-nav-sidebar">
+      <div class="app-nav-header">
+        <div class="app-logo-wordmark" aria-label="UniEats">
+          <span>Uni</span><span class="eats">Eats</span>
+        </div>
+      </div>
+      <nav class="app-nav-links">
+        <a href="#home" class="app-nav-link active" id="tab-home" data-tab="home" onclick="handleSidebarNavigation(event, 'home')">
+          <span class="nav-link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M3 11.5L12 4l9 7.5"/><path d="M5.5 10.5V20h13V10.5"/><path d="M10 20v-5h4v5"/></svg>
+          </span>
+          <span class="app-nav-link-text">Početna</span>
+        </a>
+        <a href="#menu" class="app-nav-link" id="tab-menu" data-tab="menu" onclick="handleSidebarNavigation(event, 'menu')">
+          <span class="nav-link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M5 6.5h14"/><path d="M5 12h14"/><path d="M5 17.5h14"/></svg>
+          </span>
+          <span class="app-nav-link-text">Jelovnik</span>
+        </a>
+        <a href="#orders" class="app-nav-link" id="tab-orders" data-tab="orders" onclick="handleSidebarNavigation(event, 'orders')">
+          <span class="nav-link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><rect x="6" y="3.5" width="12" height="17" rx="2.5"/><path d="M9 8h6"/><path d="M9 12h6"/><path d="M9 16h4"/></svg>
+          </span>
+          <span class="app-nav-link-text">Narudžbe</span>
+        </a>
+        <a href="#favorites" class="app-nav-link" id="tab-favorites" data-tab="favorites" onclick="handleSidebarNavigation(event, 'favorites')">
+          <span class="nav-link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M12 20s-6.8-4.4-8.7-8.3C1.9 9 3.3 5.8 6.2 5.3c1.9-.3 3.2.5 4 1.7.8-1.2 2.1-2 4-1.7 2.9.5 4.3 3.7 2.9 6.4C18.8 15.6 12 20 12 20z"/></svg>
+          </span>
+          <span class="app-nav-link-text">Favoriti</span>
+        </a>
+        <a href="#admin" class="app-nav-link" id="tab-admin" data-tab="admin" onclick="handleSidebarNavigation(event, 'admin')" style="display:none">
+          <span class="nav-link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M4 7h16"/><path d="M4 12h10"/><path d="M4 17h12"/><circle cx="18" cy="12" r="2.5"/><circle cx="16" cy="17" r="2"/></svg>
+          </span>
+          <span class="app-nav-link-text">Upravljanje jelovnikom</span>
+        </a>
+        <a href="#users" class="app-nav-link" id="tab-users" data-tab="users" onclick="handleSidebarNavigation(event, 'users')" style="display:none">
+          <span class="nav-link-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><circle cx="9" cy="9" r="3"/><circle cx="16.5" cy="8.5" r="2.5"/><path d="M3.5 19c.8-2.5 3.1-4 5.5-4s4.7 1.5 5.5 4"/><path d="M14 18.5c.5-1.8 2.1-3 4-3 1.1 0 2.1.3 3 .9"/></svg>
+          </span>
+          <span class="app-nav-link-text">Korisnici / Organizacija</span>
+        </a>
+      </nav>
+      <button type="button" class="app-profile-link" id="tab-profile" onclick="showTab('profile')" style="display:none">
+        <div class="app-profile-avatar" id="sidebar-profile-avatar">
+          <span class="app-profile-avatar-fallback" id="sidebar-profile-avatar-fallback">&#128100;</span>
+          <img id="sidebar-profile-avatar-img" alt="Profilna slika" />
+        </div>
+        <div class="app-profile-meta">
+          <div class="app-profile-name" id="sidebar-profile-name">Korisnik</div>
+          <div class="app-profile-role" id="sidebar-profile-role">Student</div>
+        </div>
+        <span class="app-profile-arrow">&#8250;</span>
+      </button>
+    </aside>
+
+    <main class="app-center-column">
+      <div class="center-topbar">
+        <label class="center-search">
+          <span class="center-search-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+          </span>
+          <input type="text" id="search-input" placeholder="Pretraži jela..." oninput="renderMenu()" />
+        </label>
+        <div class="top-cart-wrap" id="top-cart-wrap">
+          <button type="button" class="top-cart-widget" id="top-cart-widget" onclick="toggleMiniCart(event)">
+            <span class="top-cart-icon">&#128722;<span class="top-cart-badge" id="top-cart-badge">0</span></span>
+            <span class="top-cart-copy">
+              <strong>Košarica</strong>
+              <small id="top-cart-total">0,00 €</small>
+            </span>
+          </button>
+          <div class="mini-cart-popover" id="mini-cart-popover" style="display:none">
+            <div class="mini-cart-items" id="mini-cart-items"></div>
+            <div class="mini-cart-total">
+              <span>Ukupno</span>
+              <strong id="mini-cart-total">0,00 €</strong>
+            </div>
+            <button class="btn btn-primary btn-sm btn-full" type="button" onclick="openCartWidgetFromMiniCart()">Nastavi na košaricu</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="menu-section">
+        <section class="hero-shell" id="hero-shell">
+          <div class="hero-copy">
+            <p class="hero-kicker">Današnji odabir</p>
+            <h1 class="hero-title">Dobar tek <span id="hero-user-name">Prijatelju</span>!</h1>
+            <p class="hero-sub">Što ćeš danas jesti?</p>
+          </div>
+          <div class="hero-plate">
+            <img id="hero-food-image" src="/static/hero-food.svg" alt="Hero vizual hrane" />
+          </div>
+        </section>
+
+        <section class="today-menu-shell">
+          <div class="today-menu-head">
+            <div>
+              <h2>Današnji jelovnik</h2>
+              <p id="today-menu-date">-</p>
+            </div>
+            <button type="button" class="today-menu-link" onclick="showTab('menu')">Pogledaj cijeli jelovnik</button>
+          </div>
+          <div class="menu-filter-pills" id="sidebar-cats"></div>
+          <div id="menu-container"><div class="spinner"></div></div>
+        </section>
+
+        <section class="menu-bottom-grid" id="menu-bottom-grid">
+          <article class="dashboard-card">
+            <div class="dashboard-head">
+              <h3>Preporučeno za tebe</h3>
+              <p>Na temelju tvojih narudžbi</p>
+            </div>
+            <div class="recommended-row" id="recommended-items"></div>
+          </article>
+          <article class="dashboard-card">
+            <div class="dashboard-head">
+              <h3>Popularno</h3>
+              <p>Najčešće naručivana jela</p>
+            </div>
+            <div class="recommended-row" id="popular-items"></div>
+          </article>
+          <article class="dashboard-card">
+            <div class="dashboard-head with-control">
+              <div>
+                <h3>Tvoja prehrana</h3>
+                <p>Prati potrošnju i dinamiku naručivanja</p>
+              </div>
+              <select id="nutrition-range" onchange="renderNutritionPanel()">
+                <option value="week">Ovaj tjedan</option>
+                <option value="month">Ovaj mjesec</option>
+              </select>
+            </div>
+            <div class="nutrition-stats">
+              <div><span>Potrošnja</span><strong id="nutrition-spend">0,00 €</strong></div>
+              <div><span>Broj narudžbi</span><strong id="nutrition-count">0</strong></div>
+            </div>
+            <div class="nutrition-chart" id="nutrition-chart"></div>
+          </article>
+        </section>
+      </div>
+
+      <div id="favorites-section" style="display:none">
+        <section class="today-menu-shell">
+          <div class="today-menu-head">
+            <div>
+              <h2>Favoriti</h2>
+              <p id="favorites-count-text">Nema spremljenih jela.</p>
+            </div>
+          </div>
+          <div id="favorites-container"></div>
+        </section>
+      </div>
+
+      <div id="orders-section" style="display:none">
+        <div id="orders-container"><div class="spinner"></div></div>
+      </div>
+
+      <div id="admin-section" style="display:none">
+        <div class="admin-toolbar">
+          <div class="admin-title">Upravljanje artiklima</div>
+          <div class="admin-toolbar-actions">
+            <div class="admin-org-select-wrap" id="admin-org-selector-wrap" style="display:none">
+              <label for="admin-org-selector">Restoran</label>
+              <select id="admin-org-selector" onchange="onAdminOrganizationChange(this.value)"></select>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="openAdminForm('add')">+ Dodaj artikal</button>
+          </div>
+        </div>
+
+        <div id="owner-admin-management-legacy" class="admin-form-card" style="display:none">
+          <h3>Upravljanje admin korisnicima</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email *</label>
+              <input type="text" id="owner-admin-email-legacy" placeholder="admin@restoran.hr" />
+            </div>
+            <div class="form-group">
+              <label>Lozinka *</label>
+              <input type="password" id="owner-admin-password-legacy" placeholder="najmanje 6 znakova" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Ime</label>
+              <input type="text" id="owner-admin-first-legacy" placeholder="Ana" />
+            </div>
+            <div class="form-group">
+              <label>Prezime</label>
+              <input type="text" id="owner-admin-last-legacy" placeholder="Horvat" />
+            </div>
+          </div>
+          <div id="owner-admin-error-legacy" class="error-msg"></div>
+          <div style="display:flex;gap:.75rem;margin-top:.9rem">
+            <button class="btn btn-primary" onclick="ownerCreateAdmin()">Kreiraj admina</button>
+            <button class="btn btn-ghost" onclick="loadOwnerAdmins()">Osvježi listu</button>
+          </div>
+          <div id="owner-admin-list-legacy" style="margin-top:1rem"></div>
+        </div>
+
+        <div id="admin-form-wrap" class="admin-form-card" style="display:none">
+          <h3 id="admin-form-title">Novi artikal</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Šifra *</label>
+              <input type="text" id="af-code" placeholder="npr. 1001" />
+            </div>
+            <div class="form-group">
+              <label>Kod grupe *</label>
+              <input type="text" id="af-group" placeholder="npr. 10" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Naziv *</label>
+            <input type="text" id="af-name" placeholder="Naziv artikla" />
+          </div>
+          <div class="form-group">
+            <label>Opis</label>
+            <textarea id="af-desc" rows="2" placeholder="Kratki opis..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Slika jela (JPEG/PNG/WEBP, max 3MB)</label>
+            <input class="visually-hidden-file" type="file" id="af-image" accept="image/jpeg,image/png,image/webp" onchange="previewAdminImage()" />
+            <label
+              for="af-image"
+              id="af-dropzone"
+              class="upload-dropzone"
+              ondragover="onAdminDropzoneDragOver(event)"
+              ondragleave="onAdminDropzoneDragLeave(event)"
+              ondrop="onAdminDropzoneDrop(event)"
+            >
+              <div class="upload-placeholder">
+                <svg class="upload-icon-svg" viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                  <path d="M5 20h14a2 2 0 0 0 2-2v-5h-2v5H5v-5H3v5a2 2 0 0 0 2 2zM12 3l-5 5h3v6h4V8h3l-5-5z"/>
+                </svg>
+                <div class="upload-title">Povucite sliku ili kliknite za odabir</div>
+                <div class="upload-hint">Nakon odabira klikom možete promijeniti sliku</div>
+              </div>
+              <button type="button" class="upload-remove-btn" id="af-remove-floating-btn" onclick="removeAdminImage(event)" title="Ukloni sliku">
+                <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                  <path d="M7 4h10l1 2h4v2H2V6h4l1-2zm1 6h2v8H8v-8zm6 0h2v8h-2v-8z"/>
+                </svg>
+              </button>
+              <img id="af-image-preview" src="/static/fallback-food.svg" alt="Pregled slike" />
+              <div class="upload-overlay-hint">Klik za promjenu slike</div>
+            </label>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Cijena (EUR) *</label>
+              <input type="text" id="af-price" placeholder="npr. 3.50" />
+            </div>
+            <div class="form-group">
+              <label>Kategorija</label>
+              <input type="text" id="af-category" placeholder="Ostalo" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Jedinica mjere</label>
+              <input type="text" id="af-unit" placeholder="KOM" />
+            </div>
+            <div class="checkbox-row">
+              <input type="checkbox" id="af-available" checked />
+              <label for="af-available">Dostupno</label>
+            </div>
+          </div>
+          <div class="nutrition-section">Nutritivne vrijednosti (opcionalno)</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Kalorije (kcal)</label>
+              <input type="text" id="af-kcal" placeholder="" />
+            </div>
+            <div class="form-group">
+              <label>Bjelančevine (g)</label>
+              <input type="text" id="af-protein" placeholder="" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Ugljikohidrati (g)</label>
+              <input type="text" id="af-carbs" placeholder="" />
+            </div>
+            <div class="form-group">
+              <label>Masti (g)</label>
+              <input type="text" id="af-fat" placeholder="" />
+            </div>
+          </div>
+          <div id="admin-form-error" class="error-msg"></div>
+          <div style="display:flex;gap:.75rem;margin-top:.9rem">
+            <button class="btn btn-primary" id="admin-form-submit" onclick="submitAdminForm()">Spremi</button>
+            <button class="btn btn-ghost" onclick="closeAdminForm()">Odustani</button>
+          </div>
+        </div>
+
+        <div id="admin-items-container"><div class="spinner"></div></div>
+      </div>
+
+      <div id="users-section" style="display:none">
+        <div class="admin-toolbar">
+          <div class="admin-title">Korisnici organizacije</div>
+          <button class="btn btn-ghost btn-sm" onclick="loadOrganizationUsers()">Osvježi</button>
+        </div>
+
+        <div id="org-context" class="admin-form-card"></div>
+
+        <div id="owner-admin-management" class="admin-form-card" style="display:none">
+          <h3>Dodavanje djelatnika</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Ime *</label>
+              <input type="text" id="org-staff-first" placeholder="Ana" />
+            </div>
+            <div class="form-group">
+              <label>Prezime *</label>
+              <input type="text" id="org-staff-last" placeholder="Horvat" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Korisničko ime *</label>
+              <input type="text" id="org-staff-username" placeholder="djelatnik1" />
+            </div>
+            <div class="form-group">
+              <label>OIB *</label>
+              <input type="text" id="org-staff-oib" placeholder="12345678901" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Lozinka *</label>
+            <input type="password" id="org-staff-password" placeholder="najmanje 6 znakova" />
+          </div>
+          <div class="form-group" id="org-staff-org-wrap" style="display:none">
+            <label>Organizacija za djelatnika</label>
+            <select id="org-staff-organization"></select>
+          </div>
+          <div id="org-staff-error" class="error-msg"></div>
+          <div style="display:flex;gap:.75rem;margin-top:.9rem">
+            <button class="btn btn-primary" onclick="ownerCreateAdmin()">Kreiraj djelatnika</button>
+            <button class="btn btn-ghost" onclick="loadOwnerAdmins()">Osvježi listu djelatnika</button>
+          </div>
+          <div id="owner-admin-list" style="margin-top:1rem"></div>
+        </div>
+
+        <div id="org-users-list"></div>
+      </div>
+
+      <div id="profile-section" style="display:none">
+        <div id="issp-section" class="admin-form-card" style="display:none;margin-bottom:1.5rem">
+          <h3>ISSP integracija - Studentska iskaznica</h3>
+          <div id="issp-disabled-msg" style="display:none;padding:1rem;background:var(--info-soft);border-radius:var(--radius-sm);margin-bottom:1rem;color:var(--info);font-weight:600;font-size:.88rem">
+            ISSP integracija još nije konfigurirana na backendu. Povezivanje je spremno i aktivirat će se čim administrator unese ISSP pristupne podatke.
+          </div>
+          <div id="issp-enabled-content">
+            <p class="helper-note" style="margin-bottom:1rem">Povežite svoj ISSP račun i dohvatite subvenciju, profilne podatke i fakultet.</p>
+            <div class="issp-mode-switch" role="tablist" aria-label="Način povezivanja ISSP računa">
+              <button type="button" class="issp-mode-btn active" id="issp-mode-manual-btn" onclick="setISSPLinkMode('manual')">ESI + kartica</button>
+              <button type="button" class="issp-mode-btn" id="issp-mode-qr-btn" onclick="setISSPLinkMode('qr')">QR kod</button>
+            </div>
+
+            <div id="issp-manual-fields">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Broj studentske iskaznice</label>
+                  <input type="text" id="issp-card-number" placeholder="npr. 12345678" />
+                </div>
+                <div class="form-group">
+                  <label>ESI broj</label>
+                  <input type="text" id="issp-esi" placeholder="npr. ESI123456" />
+                </div>
+              </div>
+            </div>
+
+            <div id="issp-qr-fields" style="display:none">
+              <div class="form-group">
+                <label>QR payload</label>
+                <textarea id="issp-qr-payload" rows="3" placeholder="Zalijepite sadržaj QR koda ili ga očitajte iz slike"></textarea>
+              </div>
+              <div class="issp-qr-actions">
+                <input type="file" id="issp-qr-image-input" accept="image/*" onchange="onISSPQrImageSelected(event)" />
+                <button type="button" class="btn btn-ghost btn-sm" onclick="clearISSPQrPayload()">Očisti QR unos</button>
+              </div>
+              <p class="helper-note tight">Podržani QR formati: JSON ili query string s vrijednostima <code>card_number</code> i <code>esi</code>.</p>
+              <div class="issp-qr-preview" id="issp-qr-preview"></div>
+            </div>
+
+            <div style="display:flex;gap:.75rem;margin-top:.5rem">
+              <button class="btn btn-primary" id="issp-connect-btn" onclick="connectISSPAccount()">Poveži ISSP račun</button>
+              <button class="btn btn-ghost" id="issp-sync-btn" onclick="syncISSPAccount()">Osvježi ISSP podatke</button>
+            </div>
+          </div>
+          <div id="issp-error" class="error-msg"></div>
+          <div id="issp-result" style="margin-top:1rem;display:none">
+            <div class="profile-meta-grid" id="issp-result-content"></div>
+          </div>
+        </div>
+
+        <div class="profile-grid">
+          <div class="profile-card theme-transition">
+            <div class="profile-avatar-wrap">
+              <div class="profile-avatar" id="profile-avatar">
+                <span class="profile-avatar-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                    <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/>
+                  </svg>
+                </span>
+                <img id="profile-avatar-img" alt="Profilna slika korisnika" />
+              </div>
+              <div>
+                <div class="profile-name" id="profile-user-name">-</div>
+                <div class="profile-role" id="profile-user-role">-</div>
+                <div class="profile-identity-meta">
+                  <span class="profile-role-badge student" id="profile-role-badge">-</span>
+                  <span class="profile-org-pill" id="profile-org-pill">Organizacija: -</span>
+                </div>
+              </div>
+            </div>
+            <div class="profile-avatar-state">
+              <span class="profile-readonly-badge" id="profile-mode-badge">Profil samo za čitanje</span>
+              <div class="helper-note tight" id="profile-mode-note">Avatar je isključivo prikaz podataka iz postojećeg backenda. Uređivanje nije dostupno u ovoj fazi.</div>
+            </div>
+            <div id="profile-avatar-controls" style="margin-top:.85rem"></div>
+          </div>
+
+          <div class="profile-card theme-transition">
+            <h3 class="profile-section-title">Korisnički podaci</h3>
+            <div id="profile-details"></div>
+            <div id="profile-inline-controls" style="margin-top:.9rem"></div>
+          </div>
+        </div>
+        <div id="profile-owner-advanced" style="display:none;margin-top:1rem"></div>
+      </div>
+    </main>
+
+    <aside class="app-right-sidebar">
+      <section class="widget-card">
+        <div class="widget-head">
+          <h3>Odabir restorana</h3>
+        </div>
+        <div class="restaurant-selector-card theme-transition" id="student-org-gate" style="display:none">
+          <div>
+            <div class="selector-label">Korak 1 · Restoran za narudžbu</div>
+            <div class="selector-name" id="student-selected-org-name">Nije odabran restoran</div>
+            <div class="selector-sub" id="student-selected-org-sub">Odaberite restoran prije dodavanja artikala u košaricu.</div>
+          </div>
+          <div class="selector-actions">
+            <button class="btn btn-primary btn-sm" type="button" id="student-pick-org-btn" onclick="openOrganizationPickerModal()">Odaberi restoran</button>
+            <button class="btn btn-ghost btn-sm" type="button" id="student-clear-org-btn" onclick="clearSelectedOrganization()" style="display:none">Makni odabir</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="widget-card cart-panel" id="cart-panel">
+        <div class="cart-header">
+          <span class="cart-header-icon">&#128722;</span>
+          Košarica
+        </div>
+        <div class="cart-body">
+          <div id="cart-items"><p class="cart-empty">Košarica je prazna.</p></div>
+          <div class="cart-total">
+            <span>Ukupno</span>
+            <span class="cart-total-amount" id="cart-total">0,00 €</span>
+          </div>
+          <div class="cart-form">
+            <div id="cart-org-summary" class="helper-note tight"></div>
+            <div id="cart-order-rule-msg" class="order-block-note" style="display:none"></div>
+            <div class="form-group">
+              <label>Vrijeme preuzimanja</label>
+              <input type="datetime-local" id="pickup-input" />
+            </div>
+            <div class="form-group">
+              <label>Napomena (opcionalno)</label>
+              <textarea id="notes-input" rows="2" placeholder="Alergije, posebni zahtjevi..."></textarea>
+            </div>
+            <button class="btn btn-primary btn-full" id="place-order-btn" onclick="placeOrder()">Naruči</button>
+            <button class="btn btn-ghost btn-sm btn-full" onclick="clearCart()">Isprazni košaricu</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="widget-card rating-widget">
+        <div class="widget-head">
+          <h3>Ocijeni svoje iskustvo</h3>
+          <p>Zadnja narudžba</p>
+        </div>
+        <div id="experience-last-order-list"></div>
+        <div class="experience-stars" id="experience-stars"></div>
+        <p class="helper-note tight" id="experience-rating-note" style="margin-top:.55rem"></p>
+        <div class="experience-action-row">
+          <button type="button" class="btn btn-primary btn-sm" id="experience-submit-btn" onclick="submitExperienceRating()">Ocijeni</button>
+        </div>
+      </section>
+    </aside>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<div class="modal-shell" id="org-picker-modal" style="display:none" onclick="closeOrganizationPickerModal(event)">
+  <div class="modal-card theme-transition" onclick="event.stopPropagation()">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title">Odabir restorana</div>
+        <div class="modal-sub">Odaberite restoran prije narudžbe</div>
+      </div>
+      <button class="modal-close" type="button" onclick="closeOrganizationPickerModal()">&times;</button>
+    </div>
+    <div class="modal-toolbar">
+      <input type="text" id="org-search-input" placeholder="Pretraži po nazivu ili adresi" oninput="onOrganizationSearchInput(this.value)" />
+      <div class="modal-filters-row">
+        <div class="city-filter" id="org-city-filter-wrap">
+          <button type="button" class="city-filter-btn" id="org-city-filter-btn" onclick="toggleOrganizationCityDropdown(event)">
+            <span id="org-city-filter-label">Svi gradovi</span>
+            <span id="org-city-filter-count" class="city-filter-count" style="display:none"></span>
+          </button>
+          <div class="city-filter-menu" id="org-city-filter-menu"></div>
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm" onclick="clearOrganizationCityFilters()">Očisti filter</button>
+      </div>
+      <div class="city-selected-list" id="org-city-selected" style="display:none"></div>
+    </div>
+    <div class="modal-tabs">
+      <button type="button" id="org-tab-all" class="modal-tab active" onclick="setOrganizationModalTab('all')">Svi restorani</button>
+      <button type="button" id="org-tab-favorites" class="modal-tab" onclick="setOrganizationModalTab('favorites')">Favoriti</button>
+    </div>
+    <div id="org-picker-list"></div>
+  </div>
+</div>
+
+<div class="modal-shell" id="org-edit-modal" style="display:none" onclick="closeOrganizationEditModal(event)">
+  <div class="modal-card modal-card-wide theme-transition" onclick="event.stopPropagation()">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title">Uredi organizaciju</div>
+        <div class="modal-sub" id="org-edit-title-sub">Podaci restorana i radno vrijeme</div>
+      </div>
+      <button class="modal-close" type="button" onclick="closeOrganizationEditModal()">&times;</button>
+    </div>
+    <div id="org-edit-error" class="error-msg"></div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Naziv organizacije *</label>
+        <input type="text" id="org-edit-name" />
+      </div>
+      <div class="form-group">
+        <label>Telefon</label>
+        <input type="text" id="org-edit-phone" placeholder="031 123 456" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Grad</label>
+        <input type="text" id="org-edit-city" />
+      </div>
+      <div class="form-group">
+        <label>Adresa</label>
+        <input type="text" id="org-edit-address" />
+      </div>
+    </div>
+    <div class="profile-section-title">Radno vrijeme po danima</div>
+    <div id="org-edit-hours-grid" class="hours-grid"></div>
+    <div style="display:flex;gap:.65rem;justify-content:flex-end;margin-top:1rem">
+      <button class="btn btn-ghost" type="button" onclick="closeOrganizationEditModal()">Odustani</button>
+      <button class="btn btn-primary" type="button" onclick="saveOrganizationEdit()">Spremi promjene</button>
+    </div>
+  </div>
+</div>
+
+<script src="/static/index.js"></script>
+</body>
+</html>

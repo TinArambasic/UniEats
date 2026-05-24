@@ -1,0 +1,50 @@
+version: "3.9"
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: menza-preorder-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  api:
+    build: .
+    container_name: menza-preorder-api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persists SQLite database outside container
+      - ./data:/app/data
+    environment:
+      ENVIRONMENT: ${ENVIRONMENT:-development}
+      DATABASE_URL: sqlite:///./data/menza.db
+      SECRET_KEY: ${SECRET_KEY:-super-secret-change-in-production}
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES:-1440}
+      RATE_LIMITER_BACKEND: ${RATE_LIMITER_BACKEND:-memory}
+      LOGIN_RATE_LIMIT_MAX: ${LOGIN_RATE_LIMIT_MAX:-5}
+      LOGIN_RATE_LIMIT_WINDOW_SECONDS: ${LOGIN_RATE_LIMIT_WINDOW_SECONDS:-60}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      REDIS_RATE_LIMIT_PREFIX: ${REDIS_RATE_LIMIT_PREFIX:-rl:login}
+      ORDER_WINDOW_START_HOUR: ${ORDER_WINDOW_START_HOUR:-}
+      ORDER_WINDOW_END_HOUR: ${ORDER_WINDOW_END_HOUR:-}
+      LOG_FILE_PATH: ${LOG_FILE_PATH:-}
+      LOG_ROTATION: ${LOG_ROTATION:-size}
+      LOG_FILE_MAX_BYTES: ${LOG_FILE_MAX_BYTES:-10000000}
+      LOG_FILE_BACKUP_COUNT: ${LOG_FILE_BACKUP_COUNT:-5}
+      LOG_RETENTION_DAYS: ${LOG_RETENTION_DAYS:-7}
+    restart: unless-stopped
+    depends_on:
+      - redis
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s

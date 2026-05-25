@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  api:
+    ports: []
+    volumes:
+      - ./data:/app/data
+      - ./logs:/var/log/unieats
+
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: menza-preorder-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/nginx:/etc/nginx/conf.d
+      - ./deploy/certbot/www:/var/www/certbot
+      - ./deploy/certbot/conf:/etc/letsencrypt
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  certbot:
+    image: certbot/certbot:v2.8.0
+    container_name: menza-preorder-certbot
+    volumes:
+      - ./deploy/certbot/www:/var/www/certbot
+      - ./deploy/certbot/conf:/etc/letsencrypt
